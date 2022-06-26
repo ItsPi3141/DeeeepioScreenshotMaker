@@ -19,6 +19,32 @@
     <meta content="https://deeeepio-screenshot-maker.glitch.me" property="og:url" />
     <meta property="og:site_name" content="It*s ⫷Ꮆяᗩиᕲ💠ᑭî⫸" />
 	<script>
+		const TierDimensions = [
+			"",
+			"width: 4rem; height: 4.58rem; margin-left: 0rem; margin-top: -0.29rem;", 
+			"width: 4rem; height: 4.47rem; margin-left: 0rem; margin-top: -0.23rem;", 
+			"width: 4rem; height: 4.85rem; margin-left: 0rem; margin-top: -0.42rem;",
+			"width: 4.2rem; height: 4.45rem; margin-left: -0.1rem; margin-top: -0.22rem;",
+			"width: 4.19rem; height: 4.47rem; margin-left: -0.09rem; margin-top: -0.23rem;",
+			"width: 4.18rem; height: 4.4rem; margin-left: -0.09rem; margin-top: -0.2rem;",
+			"width: 4.4rem; height: 4.38rem; margin-left: -0.2rem; margin-top: -0.19rem;",
+			"width: 4.41rem; height: 4.67rem; margin-left: -0.21rem; margin-top: -0.33rem;",
+			"width: 4.41rem; height: 4.67rem; margin-left: -0.21rem; margin-top: -0.33rem;",
+			"width: 5.17rem; height: 4.82rem; margin-left: -0.58rem; margin-top: -0.41rem;",
+		];
+		const TierFrames = [
+			"",
+			"t1_fish", 
+			"t2_crab", 
+			"t3_jellyfish",
+			"t4_squid",
+			"t5_seagull",
+			"t6_ray",
+			"t7_penguin",
+			"t8_octopus",
+			"t9_tshark",
+			"t10_giantsquid",
+		];
 		function isImage(url) {
 			var old_url = new URL(url);
 
@@ -98,6 +124,14 @@
 		}
 		UpdateForumNotif = function() {
    			document.getElementById("forum-notif-on-background").innerHTML = document.getElementById("forum-notif-count").value;   
+		}
+		UpdateTier = function() {
+			document.getElementById("image-cutout-on-background").className = "avatar tier-" + document.getElementById("tier").value
+			document.getElementById("image-frame-container-on-background").style = TierDimensions[document.getElementById("tier").value]
+			document.getElementById("image-frame-on-background").src = "https://beta.deeeep.io/img/badges/" + TierFrames[document.getElementById("tier").value] + ".png"
+			document.getElementById("image-cutout-on-profile").className = "avatar tier-" + document.getElementById("tier").value
+			document.getElementById("image-frame-container-on-profile").style = TierDimensions[document.getElementById("tier").value]
+			document.getElementById("image-frame-on-profile").src = "https://beta.deeeep.io/img/badges/" + TierFrames[document.getElementById("tier").value] + ".png"
 		}
 	</script>
 </head>
@@ -325,19 +359,19 @@
 						<div class="el-row header justify-between flex-nowrap" type="flex" data-v-577fe5c2="">
 							<div class="el-col el-col-24 auto-col left" data-v-6a9d399d="" data-v-577fe5c2="">
 								<div class="user-widget" data-v-b1b7b93e="" data-v-577fe5c2="">
-									<div class="avatar tier-3 cursor-pointer" data-v-da18a3a6="" data-v-b1b7b93e="">
-										<div class="el-image badge" data-v-da18a3a6="" style="width: 4rem; height: 4.85rem; margin-left: 0rem; margin-top: -0.42rem;">
-											<img alt="badge" src="https://beta.deeeep.io/img/badges/t3_jellyfish.png" class="el-image__inner">
+									<div class="avatar tier-3" data-v-da18a3a6="" data-v-b1b7b93e="" id="image-cutout-on-background">
+										<div class="el-image badge" data-v-da18a3a6="" style="width: 4rem; height: 4.85rem; margin-left: 0rem; margin-top: -0.42rem;" id="image-frame-container-on-background">
+											<img alt="badge" src="https://beta.deeeep.io/img/badges/t3_jellyfish.png" class="el-image__inner" id="image-frame-on-background">
 												<!--v-if-->
 												<!--v-if-->
-											</div>
-											<div class="el-image pic" data-v-da18a3a6="" style="width: 4rem; height: 4rem;">
-												<img src="https://beta.deeeep.io/assets/placeholder.png" class="el-image__inner" style="object-fit: cover;" id="pfp-on-background">
-													<!--v-if-->
-													<!--v-if-->
-												</div>
-												<!---->
-											</div>
+										</div>
+										<div class="el-image pic" data-v-da18a3a6="" style="width: 4rem; height: 4rem;">
+											<img src="https://beta.deeeep.io/assets/placeholder.png" class="el-image__inner" style="object-fit: cover;" id="pfp-on-background">
+												<!--v-if-->
+												<!--v-if-->
+										</div>
+										<!---->
+									</div>
 											<div class="el-row is-align-start user__data" type="flex" data-v-b1b7b93e="">
 												<div class="el-col el-col-24 auto-col flex flex-col items-start h-full" data-v-6a9d399d="" data-v-b1b7b93e="">
 													<div class="mb-1 whitespace-nowrap flex items-center" data-v-b1b7b93e="">
@@ -461,9 +495,9 @@
 											<div class="profile" data-v-60d99b2d="" data-v-61caccc5="">
 												<div class="el-row header" data-v-60d99b2d="">
 													<div class="el-col el-col-24 auto-col mr-3" data-v-6a9d399d="" data-v-60d99b2d="">
-														<div class="avatar tier-3 avatar cursor-pointer" data-v-da18a3a6="" data-v-60d99b2d="">
-															<div class="el-image badge" data-v-da18a3a6="" style="width: 4rem; height: 4.85rem; margin-left: 0rem; margin-top: -0.42rem;">
-																<img alt="badge" src="https://beta.deeeep.io/img/badges/t3_jellyfish.png" class="el-image__inner">
+														<div class="avatar tier-3 avatar cursor-pointer" data-v-da18a3a6="" data-v-60d99b2d="" id="image-cutout-on-profile">
+															<div class="el-image badge" data-v-da18a3a6="" style="width: 4rem; height: 4.85rem; margin-left: 0rem; margin-top: -0.42rem;" id="image-frame-container-on-profile">
+																<img alt="badge" src="https://beta.deeeep.io/img/badges/t3_jellyfish.png" class="el-image__inner" id="image-frame-on-profile">
 																	<!--v-if-->
 																	<!--v-if-->
 																</div>
@@ -847,7 +881,7 @@
 				<br>
 				<form action="#">
 					<label for="tier">Tier</label>
-					<select name="tier" id="tier">
+					<select name="tier" id="tier" onchange="UpdateTier()">
 					  <option value="1">1</option>
 					  <option value="2">2</option>
 					  <option value="3">3</option>
