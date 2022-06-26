@@ -30,3 +30,32 @@
 .settings ::placeholder {
     color: #888;
 }
+.slider {
+    -webkit-appearance: none;
+    transition: all 0.3s;
+    background: #333;
+    border-radius: 100vw !important;
+    height: 5px;
+    padding: 10px 3px 11px 3px !important;
+    margin-top: 6px;
+    transition: all 0.5s;
+}
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 100vw;
+    background: #4285F4;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+.slider::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    background: #4285F4;
+    cursor: pointer;
+}
+.slider::-webkit-slider-thumb:hover {
+    background: #8db9ff;
+}
