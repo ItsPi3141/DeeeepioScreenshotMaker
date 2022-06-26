@@ -45,6 +45,19 @@
 			"t9_tshark",
 			"t10_giantsquid",
 		];
+		const TierColors = [
+			"",
+			"rgb(253, 190, 98", 
+			"rgb(255, 89, 89", 
+			"rgb(252, 138, 180",
+			"rgb(255, 171, 171",
+			"rgb(255, 255, 255",
+			"rgb(253, 175, 253",
+			"rgb(247, 147, 30",
+			"rgb(228, 121, 24",
+			"rgb(219, 219, 219",
+			"rgb(144, 42, 42",
+		];
 		function isImage(url) {
 			var old_url = new URL(url);
 
@@ -126,12 +139,30 @@
    			document.getElementById("forum-notif-on-background").innerHTML = document.getElementById("forum-notif-count").value;   
 		}
 		UpdateTier = function() {
+			//on background
 			document.getElementById("image-cutout-on-background").className = "avatar tier-" + document.getElementById("tier").value
 			document.getElementById("image-frame-container-on-background").style = TierDimensions[document.getElementById("tier").value]
 			document.getElementById("image-frame-on-background").src = "https://beta.deeeep.io/img/badges/" + TierFrames[document.getElementById("tier").value] + ".png"
+			//on profile modal
 			document.getElementById("image-cutout-on-profile").className = "avatar tier-" + document.getElementById("tier").value
 			document.getElementById("image-frame-container-on-profile").style = TierDimensions[document.getElementById("tier").value]
 			document.getElementById("image-frame-on-profile").src = "https://beta.deeeep.io/img/badges/" + TierFrames[document.getElementById("tier").value] + ".png"
+			//tier tag
+			document.getElementById("tier-tag-color").style.backgroundColor = TierColors[document.getElementById("tier").value] + ")"
+			document.getElementById("tier-tag").innerHTML = "Tier " + document.getElementById("tier").value
+			//tier bar color
+			document.getElementById("tier-bar").style.backgroundColor = TierColors[document.getElementById("tier").value] + ", 0.6)"
+			//white text on t10
+			if (document.getElementById("tier").value == 10) {
+				document.getElementById("tier-tag").classList.add("dark")
+			}
+			else {
+				document.getElementById("tier-tag").classList.remove("dark")
+			}
+		}
+		UpdateTierPercent = function() {
+			document.getElementById("tier-progress-text").innerHTML = document.getElementById("tier-progress-bar").value
+			document.getElementById("tier-bar").style.transform = "scale3d(" + document.getElementById("tier-progress-bar").value / 100 + ", 1, 1)"
 		}
 	</script>
 </head>
@@ -361,7 +392,7 @@
 								<div class="user-widget" data-v-b1b7b93e="" data-v-577fe5c2="">
 									<div class="avatar tier-3" data-v-da18a3a6="" data-v-b1b7b93e="" id="image-cutout-on-background">
 										<div class="el-image badge" data-v-da18a3a6="" style="width: 4rem; height: 4.85rem; margin-left: 0rem; margin-top: -0.42rem;" id="image-frame-container-on-background">
-											<img alt="badge" src="https://beta.deeeep.io/img/badges/t3_jellyfish.png" class="el-image__inner" id="image-frame-on-background">
+											<img alt="badge" src="https://beta.deeeep.io/img/badges/t1_fish.png" class="el-image__inner" id="image-frame-on-background">
 												<!--v-if-->
 												<!--v-if-->
 										</div>
@@ -497,7 +528,7 @@
 													<div class="el-col el-col-24 auto-col mr-3" data-v-6a9d399d="" data-v-60d99b2d="">
 														<div class="avatar tier-3 avatar cursor-pointer" data-v-da18a3a6="" data-v-60d99b2d="" id="image-cutout-on-profile">
 															<div class="el-image badge" data-v-da18a3a6="" style="width: 4rem; height: 4.85rem; margin-left: 0rem; margin-top: -0.42rem;" id="image-frame-container-on-profile">
-																<img alt="badge" src="https://beta.deeeep.io/img/badges/t3_jellyfish.png" class="el-image__inner" id="image-frame-on-profile">
+																<img alt="badge" src="https://beta.deeeep.io/img/badges/t1_fish.png" class="el-image__inner" id="image-frame-on-profile">
 																	<!--v-if-->
 																	<!--v-if-->
 																</div>
@@ -566,13 +597,13 @@
 																			</dt>
 																			<dd data-v-0facd11a="">
 																				<div class="progress" data-v-0facd11a="">
-																					<span class="el-tag el-tag--mini el-tag--light tag" data-v-0facd11a="" style="background-color: rgb(252, 138, 180);">
-																						<span class="el-tag__content">Tier 3</span>
+																					<span class="el-tag el-tag--mini el-tag--light tag" data-v-0facd11a="" style="background-color: rgb(253, 190, 98);" id="tier-tag-color">
+																						<span class="el-tag__content" id="tier-tag">Tier 1</span>
 																						<!--v-if-->
 																					</span>
 																					<div class="flex-grow" data-v-0facd11a="">
 																						<div class="meter rounded-md withTransition" data-v-36231bbe="" data-v-0facd11a="" style="width: 200px; height: 8px; background-color: rgba(0, 0, 0, 0.3);">
-																							<div class="inner" data-v-36231bbe="" style="transform: scale3d(0.09, 1, 1); background-color: rgba(252, 138, 180, 0.6);"></div>
+																							<div class="inner" data-v-36231bbe="" style="transform: scale3d(0.69, 1, 1); background-color: rgb(253, 190, 98, 0.6);" id="tier-bar"></div>
 																							<!---->
 																						</div>
 																					</div>
@@ -890,29 +921,33 @@
 					  <option value="6">6</option>
 					  <option value="7">7</option>
 					  <option value="8">8</option>
-					  <option value="9">9</option>
+					  <option value="9" disabled>9</option>
 					  <option value="10">10</option>
 					</select>
 				</form>
-					<br>
-					<label for="acc-age">Account age</label>
-					<input type="text" id="acc-age" placeholder="4 months" value="4 months" onkeyup="UpdateAccAge()">
-					<br>
-					<label for="cakeday">Caaaake day</label>
-					<input type="text" id="cakeday" placeholder="March 14" value="March 14" onkeyup="UpdateCaaaakeDay()">
-					<br>
-					<label for="about-msg">About me</label>
-					<textarea id="about-msg" rows="6" cols="35" placeholder="Hi there! I'm Pi!" onkeyup="UpdateAboutMe()">Hi there! I'm Pi!</textarea>
-					<br>
-					<label for="death-msg">Death message</label>
-					<textarea id="death-msg" rows="6" cols="35" placeholder="Oops! Sorry I killed you." onkeyup="UpdateDeathMessage()">Oops! Sorry I killed you.</textarea>
-					<br>
-					<label for="discord-link">Discord</label>
-					<input type="text" id="discord-link" placeholder="Discord#0001" value="Discord#0001" onkeyup="UpdateDiscord()">
-					<br>
-					<label for="youtube-link">YouTube</label>
-					<input type="text" id="youtube-link" placeholder="YouTube" value="YouTube" onkeyup="UpdateYoutube()">
-				</div>
+				<br>
+				<label for="tier-progress-bar">Tier Progress: <span id="tier-progress-text">69</span>%</label>
+				<input type="range" class="slider" id="tier-progress-bar" min="0" max="100" value="69" oninput="UpdateTierPercent()">
+				<br>
+				<br>
+				<label for="acc-age">Account age</label>
+				<input type="text" id="acc-age" placeholder="4 months" value="4 months" onkeyup="UpdateAccAge()">
+				<br>
+				<label for="cakeday">Caaaake day</label>
+				<input type="text" id="cakeday" placeholder="March 14" value="March 14" onkeyup="UpdateCaaaakeDay()">
+				<br>
+				<label for="about-msg">About me</label>
+				<textarea id="about-msg" rows="6" cols="35" placeholder="Hi there! I'm Pi!" onkeyup="UpdateAboutMe()">Hi there! I'm Pi!</textarea>
+				<br>
+				<label for="death-msg">Death message</label>
+				<textarea id="death-msg" rows="6" cols="35" placeholder="Oops! Sorry I killed you." onkeyup="UpdateDeathMessage()">Oops! Sorry I killed you.</textarea>
+				<br>
+				<label for="discord-link">Discord</label>
+				<input type="text" id="discord-link" placeholder="Discord#0001" value="Discord#0001" onkeyup="UpdateDiscord()">
+				<br>
+				<label for="youtube-link">YouTube</label>
+				<input type="text" id="youtube-link" placeholder="YouTube" value="YouTube" onkeyup="UpdateYoutube()">
+			</div>
 			<div class="settings-col-right settings-column">
 				<p style="text-align: center;"><b>Background Home screen</b></p>
 				<br>
@@ -925,23 +960,23 @@
 				<form action="#">
 					<label for="game-server">Server</label>
 					<select name="server" id="game-server" onchange="UpdateServer()">
-					  <optgroup label="Long">
-						<option value="North America <b>NA</b>">North America NA</option>
-						<option value="East Asia <b>AS</b>">East Asia AS</option>
-						<option value="Europe <b>EU</b>">Europe EU</option>
-						<option value="South America <b>LAS</b>">South America LAS</option>
-						<option value="Oceania <b>OCE</b>">Oceania OCE</option>
-					  </optgroup>
-					  <optgroup label="Short">
-						<option value="<b>NA</b>">NA</option>
-						<option value="<b>AS</b>">AS</option>
-						<option value="<b>EU</b>">EU</option>
-						<option value="<b>LAS</b>">LAS</option>
-						<option value="<b>OCE</b>">OCE</option>
-					  </optgroup>
-			  </form>
+						<optgroup label="Long">
+							<option value="North America <b>NA</b>">North America NA</option>
+							<option value="East Asia <b>AS</b>">East Asia AS</option>
+							<option value="Europe <b>EU</b>">Europe EU</option>
+							<option value="South America <b>LAS</b>">South America LAS</option>
+							<option value="Oceania <b>OCE</b>">Oceania OCE</option>
+						</optgroup>
+						<optgroup label="Short">
+							<option value="<b>NA</b>">NA</option>
+							<option value="<b>AS</b>">AS</option>
+							<option value="<b>EU</b>">EU</option>
+							<option value="<b>LAS</b>">LAS</option>
+							<option value="<b>OCE</b>">OCE</option>
+						</optgroup>
+					</form>
+				</div>
 			</div>
-		</div>
 	</div>
 </body>
 </html>
