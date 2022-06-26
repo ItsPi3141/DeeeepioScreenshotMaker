@@ -1,0 +1,32 @@
+.setting-container {
+    /* height: 15em; */
+    position: relative;
+    z-index: 9999;
+    background-color: #222;
+    color: #eee; 
+    padding: 1em;
+    margin-top: 1em;
+    box-shadow: 0px -5px 15px #0004;
+}
+.settings {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 2em;
+}
+.settings-column {
+    display: flex;
+    flex-direction: column;
+    width: 30vw;
+}
+.settings textarea, .settings select, .settings input {
+    border: none;
+    border-radius: 5px;
+    padding: 3px;
+    resize: none;
+    font-family: inherit;
+    font-size: inherit;
+}
+.settings ::placeholder {
+    color: #888;
+}

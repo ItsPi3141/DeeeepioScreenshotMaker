@@ -1,0 +1,11 @@
+Known color values (mostly a not to myself, I won't use HEX for simplicity's sake):
+Tier 1: rgb(253, 190, 98)
+Tier 2: rgb(255, 89, 89)
+Tier 3: rgb(252, 138, 180)
+Tier 4: rgb(255, 171, 171)
+Tier 5: rgb(255, 255, 255)
+Tier 6: rgb(253, 175, 253)
+Tier 7: rgb(247, 147, 30)
+Tier 8: rgb(228, 121, 24)
+Tier 9: rgb(219, 219, 219)
+Tier 10: rgb(144, 42, 42) (dark)
