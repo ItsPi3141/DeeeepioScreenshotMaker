@@ -108,23 +108,28 @@
   .checkmark:after {
     content: "";
     position: absolute;
-    display: none;
-  }
-  
-  /* Show the checkmark when checked */
-  .container input:checked ~ .checkmark:after {
     display: block;
-  }
-  
-  /* Style the checkmark/indicator */
-  .container .checkmark:after {
+    transform: scale(0.2) rotate(5deg);
+    transition: all 0.5s;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+    display: block;
+    transform: scale(1) rotate(45deg);
+    opacity: 1;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+      width: 5px;
+      height: 10px;
     left: 5px;
     top: 2px;
-    width: 5px;
-    height: 10px;
     border: solid white;
     border-width: 0 2px 2px 0;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
+    opacity: 0;
+    -webkit-transform: rotate(5deg);
+    -ms-transform: rotate(5deg);
+    transform: rotate(5deg);
   }
