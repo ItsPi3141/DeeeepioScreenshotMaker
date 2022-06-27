@@ -154,15 +154,23 @@
 			document.getElementById("tier-bar").style.backgroundColor = TierColors[document.getElementById("tier").value] + ", 0.6)"
 			//white text on t10
 			if (document.getElementById("tier").value == 10) {
-				document.getElementById("tier-tag").classList.add("dark")
+				document.getElementById("tier-tag-color").classList.add("dark")
 			}
 			else {
-				document.getElementById("tier-tag").classList.remove("dark")
+				document.getElementById("tier-tag-color").classList.remove("dark")
 			}
 		}
 		UpdateTierPercent = function() {
 			document.getElementById("tier-progress-text").innerHTML = document.getElementById("tier-progress-bar").value
 			document.getElementById("tier-bar").style.transform = "scale3d(" + document.getElementById("tier-progress-bar").value / 100 + ", 1, 1)"
+		}
+		UpdateVerifiedBadge = function() {
+			if (document.getElementById("is-verified").checked) {
+				document.getElementById("verified-badge-on-profile").style.display = "block"
+			}
+			else {
+				document.getElementById("verified-badge-on-profile").style.display = "none"
+			}
 		}
 	</script>
 </head>
@@ -544,7 +552,9 @@
 															<div class="el-col el-col-24 auto-col fill" data-v-6a9d399d="" data-v-60d99b2d="">
 																<div class="flex items-center space-x-1" data-v-60d99b2d="">
 																	<h4 class="username" data-v-60d99b2d="" id="username-on-profile">Pi</h4>
-																	<!---->
+																	<div class="el-image verified-icon el-tooltip__trigger el-tooltip__trigger" data-v-60d99b2d="" style="display: none;" id="verified-badge-on-profile">
+																		<img src="https://beta.deeeep.io/img/verified.png" class="el-image__inner">
+																	</div>
 																	<button class="el-button el-button--text el-button--mini is-round btn nice-button gray has-icon only-icon" aria-disabled="false" type="button" data-v-1676d978="" data-v-60d99b2d="">
 																		<!--v-if-->
 																		<span class="">
@@ -907,10 +917,16 @@
 				<label for="usr-name">Name</label>
 				<input type="text" id="usr-name" placeholder="Pi" value="Pi" onkeyup="UpdateUsername()">
 				<br>
+				<label for="is-verified" class="container">
+					Verified badge
+					<input type="checkbox" id="is-verified" class="checkbox" onchange="UpdateVerifiedBadge()">
+					<span class="checkmark"></span>
+				</label>
+				<br>
 				<label for="view-count">Profile views</label>
 				<input type="text" id="view-count" placeholder="69.4k" value="69.4k" onkeyup="UpdateProfileViews()">
 				<br>
-				<form action="#">
+				<!-- <form action="#"> -->
 					<label for="tier">Tier</label>
 					<select name="tier" id="tier" onchange="UpdateTier()">
 					  <option value="1">1</option>
@@ -924,7 +940,7 @@
 					  <option value="9" disabled>9</option>
 					  <option value="10">10</option>
 					</select>
-				</form>
+				<!-- </form> -->
 				<br>
 				<label for="tier-progress-bar">Tier Progress: <span id="tier-progress-text">69</span>%</label>
 				<input type="range" class="slider" id="tier-progress-bar" min="0" max="100" value="69" oninput="UpdateTierPercent()">
@@ -957,7 +973,7 @@
 				<label for="forum-notif-count">Forum notification count</label>
 				<input type="text" id="forum-notif-count" placeholder="2" value="2" onkeyup="UpdateForumNotif()">
 				<br>
-				<form action="#">
+				<!-- <form action="#"> -->
 					<label for="game-server">Server</label>
 					<select name="server" id="game-server" onchange="UpdateServer()">
 						<optgroup label="Long">
@@ -974,7 +990,7 @@
 							<option value="<b>LAS</b>">LAS</option>
 							<option value="<b>OCE</b>">OCE</option>
 						</optgroup>
-					</form>
+					<!-- </form> -->
 				</div>
 			</div>
 	</div>
